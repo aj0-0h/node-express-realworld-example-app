@@ -26,14 +26,12 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to AWS
+      - name: Deploy to K8s
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ubuntu
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/realworld-app:latest
-            docker stop my-realworld-app || true
-            docker rm my-realworld-app || true
-            docker run -d -p 3000:3000 --name my-realworld-app ${{ secrets.DOCKERHUB_USERNAME }}/realworld-app:latest
+            kubectl set image deployment/realworld-api api=${{ secrets.DOCKERHUB_USERNAME }}/realworld-app:latest
+            kubectl rollout status deployment/realworld-api

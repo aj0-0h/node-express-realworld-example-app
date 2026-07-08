@@ -44,8 +44,9 @@ Thumbs.db
 # .gitignore
 node_modules
 dist
-.envkubectl
+kubectl
 minikube-linux-amd64
 .env
 k8s/secret.yaml
+k8/secret.yaml
 node_modules/
