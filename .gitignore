@@ -50,3 +50,9 @@ minikube-linux-amd64
 k8s/secret.yaml
 k8/secret.yaml
 node_modules/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
